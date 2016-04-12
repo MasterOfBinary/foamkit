@@ -8,6 +8,7 @@
 use strict;
 use warnings;
 
+use Cwd;
 use Getopt::Std;
 
 use lib "$ENV{FOAMKIT_ROOT}/lib";
@@ -18,20 +19,22 @@ use postproc;
 use preproc;
 use Scalar::Util qw(looks_like_number);
 
-if (!init_foamkit())
+# Check command line options
+my $force = 0; # Force cleanup and setup without prompt (dangerous! for debugging only!)
+my $casedir = getcwd();
+
+my %options = ();
+getopts("fc:", \%options);
+
+$force = $options{f} if defined $options{f};
+$casedir = $options{c} if defined $options{c};
+
+if (!init_foamkit($casedir))
 {
   exit 1;
 }
 
 my %env = get_foamkit_env();
-
-# Check command line options
-my $force = 0; # Force cleanup and setup without prompt (dangerous! for debugging only!)
-
-my %options = ();
-getopts("f", \%options);
-
-$force = $options{f} if defined $options{f};
 
 my $header_text = q'------------------------------------------------------------------------------
 | =========                 |                                                |

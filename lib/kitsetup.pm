@@ -29,7 +29,7 @@ sub get_setup_dirs
   my %env = get_foamkit_env();
 
   # The directories in SOURCE are the ones we want to look at
-  my $source_dir = "$env{FOAMKIT_DIR}/SOURCE";
+  my $source_dir = "$env{CASE_DIR}/SOURCE";
   my @source_dirs = read_files_in_dir($source_dir, 0); # 0=not recursive
 
   # For each file there should be a foamkit.dat with, in particular,
@@ -70,7 +70,7 @@ sub is_dir_setup
 }
 
 #
-# Sets up a directory by copying its files into the main foamkit dir.
+# Sets up a directory by copying its files into the main case dir.
 #
 sub setup_dir
 {
@@ -86,6 +86,9 @@ sub setup_dir
 
   print "Setting up $friendly_name... \n";
   
+  my $cwdorig = getcwd();
+  chdir("$env{CASE_DIR}");
+
   # If there are more than one directory, ask which one to use
   my $subdir;
   if ($usecurrent)
@@ -94,7 +97,7 @@ sub setup_dir
   }
   else
   {
-    my @subfiles = read_files_in_dir("SOURCE/$dir", 0); # 0=not recursive
+    my @subfiles = read_files_in_dir("$env{CASE_DIR}/SOURCE/$dir", 0); # 0=not recursive
     my %subdirs = ();
     foreach (@subfiles)
     {
@@ -118,6 +121,7 @@ sub setup_dir
     if (scalar keys %subdirs == 0)
     {
       print "No $friendly_name found!\n";
+      chdir("$cwdorig");
       return 0;
     }
     elsif (scalar keys %subdirs == 1)
@@ -169,6 +173,8 @@ sub setup_dir
   {
     print "Failed!\n";
   }
+
+  chdir("$cwdorig");
 
   return 1;
 }

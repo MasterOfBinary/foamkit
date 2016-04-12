@@ -62,7 +62,7 @@ sub copy_files
   my %env = get_foamkit_env();
 
   my $cwdorig = getcwd();
-  chdir("$env{FOAMKIT_DIR}");
+  chdir("$env{CASE_DIR}");
   my @files = read_files_in_dir("SOURCE/$source", 1);
 
   # Copy the files and directories
@@ -146,7 +146,7 @@ sub remove_files
   my %env = get_foamkit_env();
 
   my $cwdorig = getcwd();
-  chdir("$env{FOAMKIT_DIR}");
+  chdir("$env{CASE_DIR}");
   my @files = read_files_in_dir("SOURCE/$source", 1);
 
   my @dirs = ();

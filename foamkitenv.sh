@@ -18,7 +18,7 @@ export FOAMKIT_ROOT=$HOME/foamkit
 # The directory where simulation and output data should go. It should
 # not have spaces in it.
 #
-export FOAMKIT_SIM=$HOME/foamkitsim
+export FOAMKIT_SIM=$HOME/foamkit/sim
 
 #
 # The directory OpenFOAM is in.
@@ -55,5 +55,5 @@ export FOAMKIT_CONTROL_SIM_TIME=5
 # The lines below should not need to be changed.                              #
 ###############################################################################
 
-alias foamkit="cd $FOAMKIT_ROOT"
+alias foamkit="$FOAMKIT_ROOT/foamkit.pl"
 

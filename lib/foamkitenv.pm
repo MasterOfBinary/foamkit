@@ -9,6 +9,7 @@ package foamkitenv;
 use strict;
 use warnings;
 
+use Cwd;
 use Scalar::Util qw(looks_like_number);
 
 use base 'Exporter';
@@ -105,9 +106,11 @@ sub get_boolean_value
 #
 sub check_foamkit_env
 {
+  my ($casedir) = @_;
+
   %env = ();
 
-  return 0 unless check_dir_exists("$ENV{FOAMKIT_ROOT}", "FOAMKIT_ROOT", "SOURCE");
+  return 0 unless check_dir_exists("$ENV{FOAMKIT_ROOT}", "FOAMKIT_ROOT", "foamkitenv.sh");
   return 0 unless check_dir_exists("$ENV{FOAMKIT_SIM}", "FOAMKIT_SIM", "");
   return 0 unless check_dir_exists("$ENV{FOAMKIT_OF_ROOT}", "FOAMKIT_OF_ROOT", "Allwmake");
   return 0 unless check_numeric("$ENV{FOAMKIT_NUM_PROCS}", "FOAMKIT_NUM_PROCS");
@@ -128,6 +131,14 @@ sub check_foamkit_env
   $env{CONTROL_TIMESTEP} = "$ENV{FOAMKIT_CONTROL_TIMESTEP}";
   $env{CONTROL_SIM_TIME} = "$ENV{FOAMKIT_CONTROL_SIM_TIME}";
 
+  # Get the directory the source files will be
+  $env{CASE_DIR} = "$casedir";
+  unless (-d "$casedir/SOURCE")
+  {
+    print "$casedir is not a valid case directory. Check that it exists and contains a SOURCE/ directory.\n";
+    return 0;
+  }
+
   return 1;
 }
 
@@ -136,7 +147,9 @@ sub check_foamkit_env
 #
 sub init_foamkit
 {
-  return 0 unless check_foamkit_env();
+  my ($casedir) = @_;
+
+  return 0 unless check_foamkit_env($casedir);
   return load_setup_data();
 }
 
