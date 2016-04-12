@@ -110,6 +110,16 @@ sub check_foamkit_env
 
   %env = ();
 
+  # Get the directory the source files will be
+  $env{CASE_DIR} = "$casedir";
+  unless (-d "$casedir/SOURCE")
+  {
+    print "$casedir is not a valid case directory. Check that it exists and contains a SOURCE/ directory.\n";
+    return 0;
+  }
+
+  $ENV{FOAMKIT_SIM} =~ s/%%CASE_DIR%%/$casedir/;
+
   return 0 unless check_dir_exists("$ENV{FOAMKIT_ROOT}", "FOAMKIT_ROOT", "foamkitenv.sh");
   return 0 unless check_dir_exists("$ENV{FOAMKIT_SIM}", "FOAMKIT_SIM", "");
   return 0 unless check_dir_exists("$ENV{FOAMKIT_OF_ROOT}", "FOAMKIT_OF_ROOT", "Allwmake");
@@ -122,7 +132,6 @@ sub check_foamkit_env
   # General kit settings
   $env{FOAMKIT_DIR} = "$ENV{FOAMKIT_ROOT}";
   $env{SIM_DIR} = "$ENV{FOAMKIT_SIM}";
-  $env{DATA_FILE} = "$env{FOAMKIT_DIR}/foamkit.dat";
   $env{OPENFOAM_DIR} = "$ENV{FOAMKIT_OF_ROOT}";
   $env{NUM_PROCS} = "$ENV{FOAMKIT_NUM_PROCS}";
 
@@ -131,13 +140,8 @@ sub check_foamkit_env
   $env{CONTROL_TIMESTEP} = "$ENV{FOAMKIT_CONTROL_TIMESTEP}";
   $env{CONTROL_SIM_TIME} = "$ENV{FOAMKIT_CONTROL_SIM_TIME}";
 
-  # Get the directory the source files will be
-  $env{CASE_DIR} = "$casedir";
-  unless (-d "$casedir/SOURCE")
-  {
-    print "$casedir is not a valid case directory. Check that it exists and contains a SOURCE/ directory.\n";
-    return 0;
-  }
+
+  $env{DATA_FILE} = "$env{CASE_DIR}/foamkit.dat";
 
   return 1;
 }
