@@ -123,6 +123,7 @@ sub check_foamkit_env
   return 0 unless check_dir_exists("$ENV{FOAMKIT_ROOT}", "FOAMKIT_ROOT", "foamkitenv.sh");
   return 0 unless check_dir_exists("$ENV{FOAMKIT_SIM}", "FOAMKIT_SIM", "");
   return 0 unless check_dir_exists("$ENV{FOAMKIT_OF_ROOT}", "FOAMKIT_OF_ROOT", "Allwmake");
+  return 0 unless check_nonempty("$ENV{FOAMKIT_OF_VERSION}", "FOAMKIT_OF_VERSION");
   return 0 unless check_numeric("$ENV{FOAMKIT_NUM_PROCS}", "FOAMKIT_NUM_PROCS");
 
   return 0 unless check_boolean("$ENV{FOAMKIT_CONTROL_VARIABLE_TIMESTEP}", "FOAMKIT_CONTROL_VARIABLE_TIMESTEP");
@@ -133,6 +134,7 @@ sub check_foamkit_env
   $env{FOAMKIT_DIR} = "$ENV{FOAMKIT_ROOT}";
   $env{SIM_DIR} = "$ENV{FOAMKIT_SIM}";
   $env{OPENFOAM_DIR} = "$ENV{FOAMKIT_OF_ROOT}";
+  $env{OPENFOAM_VERSION} = "$ENV{FOAMKIT_OF_VERSION}";
   $env{NUM_PROCS} = "$ENV{FOAMKIT_NUM_PROCS}";
 
   # Control settings

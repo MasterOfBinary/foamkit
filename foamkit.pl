@@ -39,12 +39,12 @@ my %env = get_foamkit_env();
 my $header_text = q'------------------------------------------------------------------------------
 | =========                 |                                                |
 | \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox          |
-|  \\\\    /   O peration     | Version:  3.0.x                                |
+|  \\\\    /   O peration     | Version:  $env{OPENFOAM_VERSION}                                |
 |   \\\\  /    A nd           | Web:      www.OpenFOAM.org                     |
 |    \\\\/     M anipulation  |                                                |
 ------------------------------------------------------------------------------
 |                                                                            |
-| FOAMkit: Project management for OpenFOAM 3.0.x                             |
+| FOAMkit: Project management for OpenFOAM $env{OPENFOAM_VERSION}                             |
 |                                                                            |
 ------------------------------------------------------------------------------
 ';

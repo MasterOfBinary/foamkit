@@ -26,6 +26,11 @@ export FOAMKIT_SIM=%%CASE_DIR%%/sim
 export FOAMKIT_OF_ROOT=$WM_PROJECT_DIR
 
 #
+# The OpenFOAM version to target.
+#
+export FOAMKIT_OF_ROOT=$WM_PROJECT_VERSION
+
+#
 # The number of processors to use for commands that can be parallelized.
 #
 export FOAMKIT_NUM_PROCS=$(nproc)
