@@ -53,6 +53,7 @@ print $header_text;
 
 # Print some stuff
 print "\nSETTINGS\n========\n\n";
+print "Case dir:       $env{CASE_DIR}\n";
 print "FOAMkit dir:    $env{FOAMKIT_DIR}\n";
 print "Simulation dir: $env{SIM_DIR}\n";
 print "OpenFOAM dir:   $env{OPENFOAM_DIR}\n";
