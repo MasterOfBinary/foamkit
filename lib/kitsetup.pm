@@ -9,6 +9,8 @@ package kitsetup;
 use strict;
 use warnings;
 
+use Cwd;
+
 use foamkitenv;
 use kittools;
 
