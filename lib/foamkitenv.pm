@@ -143,8 +143,6 @@ sub check_foamkit_env
 
   $env{DATA_FILE} = "$env{CASE_DIR}/foamkit.dat";
 
-  $env{DATA_FILE} = "$env{CASE_DIR}/foamkit.dat";
-
   return 1;
 }
 
