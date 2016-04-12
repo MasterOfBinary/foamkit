@@ -28,7 +28,7 @@ export FOAMKIT_OF_ROOT=$WM_PROJECT_DIR
 #
 # The OpenFOAM version to target.
 #
-export FOAMKIT_OF_ROOT=$WM_PROJECT_VERSION
+export FOAMKIT_OF_VERSION=$WM_PROJECT_VERSION
 
 #
 # The number of processors to use for commands that can be parallelized.
