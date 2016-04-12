@@ -36,7 +36,7 @@ if (!init_foamkit($casedir))
 
 my %env = get_foamkit_env();
 
-my $header_text = q'------------------------------------------------------------------------------
+my $header_text = "------------------------------------------------------------------------------
 | =========                 |                                                |
 | \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox          |
 |  \\\\    /   O peration     | Version:  $env{OPENFOAM_VERSION}                                |
@@ -47,7 +47,7 @@ my $header_text = q'------------------------------------------------------------
 | FOAMkit: Project management for OpenFOAM $env{OPENFOAM_VERSION}                             |
 |                                                                            |
 ------------------------------------------------------------------------------
-';
+";
 
 print $header_text;
 
