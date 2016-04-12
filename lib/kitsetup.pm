@@ -101,7 +101,7 @@ sub setup_dir
   }
   else
   {
-    my @subfiles = read_files_in_dir("$env{CASE_DIR}/SOURCE/$dir", 0); # 0=not recursive
+    my @subfiles = read_files_in_dir("SOURCE/$dir", 0); # 0=not recursive
     my %subdirs = ();
     foreach (@subfiles)
     {
