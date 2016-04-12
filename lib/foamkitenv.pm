@@ -122,7 +122,6 @@ sub check_foamkit_env
   # General kit settings
   $env{FOAMKIT_DIR} = "$ENV{FOAMKIT_ROOT}";
   $env{SIM_DIR} = "$ENV{FOAMKIT_SIM}";
-  $env{DATA_FILE} = "$env{FOAMKIT_DIR}/foamkit.dat";
   $env{OPENFOAM_DIR} = "$ENV{FOAMKIT_OF_ROOT}";
   $env{NUM_PROCS} = "$ENV{FOAMKIT_NUM_PROCS}";
 
@@ -138,6 +137,8 @@ sub check_foamkit_env
     print "$casedir is not a valid case directory. Check that it exists and contains a SOURCE/ directory.\n";
     return 0;
   }
+
+  $env{DATA_FILE} = "$env{CASE_DIR}/foamkit.dat";
 
   return 1;
 }

@@ -18,7 +18,7 @@ export FOAMKIT_ROOT=$HOME/foamkit
 # The directory where simulation and output data should go. It should
 # not have spaces in it.
 #
-export FOAMKIT_SIM=$HOME/foamkit/sim
+export FOAMKIT_SIM=%%CASE_DIR%%/sim
 
 #
 # The directory OpenFOAM is in.
