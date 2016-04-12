@@ -75,6 +75,8 @@ sub is_dir_setup
 sub setup_dir
 {
   my ($dir, $force, $usecurrent) = @_;
+
+  my %env = get_foamkit_env();
   
   my $friendly_name = $setup_dirs{$dir};
 
