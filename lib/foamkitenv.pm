@@ -126,22 +126,12 @@ sub check_foamkit_env
   return 0 unless check_nonempty("$ENV{FOAMKIT_OF_VERSION}", "FOAMKIT_OF_VERSION");
   return 0 unless check_numeric("$ENV{FOAMKIT_NUM_PROCS}", "FOAMKIT_NUM_PROCS");
 
-  return 0 unless check_boolean("$ENV{FOAMKIT_CONTROL_VARIABLE_TIMESTEP}", "FOAMKIT_CONTROL_VARIABLE_TIMESTEP");
-  return 0 unless check_nonempty("$ENV{FOAMKIT_CONTROL_TIMESTEP}", "FOAMKIT_CONTROL_TIMESTEP");
-  return 0 unless check_numeric("$ENV{FOAMKIT_CONTROL_SIM_TIME}", "FOAMKIT_CONTROL_SIM_TIME");
-
   # General kit settings
   $env{FOAMKIT_DIR} = "$ENV{FOAMKIT_ROOT}";
   $env{SIM_DIR} = "$ENV{FOAMKIT_SIM}";
   $env{OPENFOAM_DIR} = "$ENV{FOAMKIT_OF_ROOT}";
   $env{OPENFOAM_VERSION} = "$ENV{FOAMKIT_OF_VERSION}";
   $env{NUM_PROCS} = "$ENV{FOAMKIT_NUM_PROCS}";
-
-  # Control settings
-  $env{CONTROL_VARIABLE_TIMESTEP} = get_boolean_value($ENV{FOAMKIT_CONTROL_VARIABLE_TIMESTEP}) ? "yes" : "no";
-  $env{CONTROL_TIMESTEP} = "$ENV{FOAMKIT_CONTROL_TIMESTEP}";
-  $env{CONTROL_SIM_TIME} = "$ENV{FOAMKIT_CONTROL_SIM_TIME}";
-
 
   $env{DATA_FILE} = "$env{CASE_DIR}/foamkit.dat";
 

@@ -36,27 +36,6 @@ export FOAMKIT_OF_VERSION=$WM_PROJECT_VERSION
 export FOAMKIT_NUM_PROCS=$(nproc)
 
 ###############################################################################
-# CONTROL SETTINGS                                                            #
-###############################################################################
-
-#
-# Whether to use a variable timestep (based on a maximum Courant number). 0/1
-# or true/false.
-#
-export FOAMKIT_CONTROL_VARIABLE_TIMESTEP=1
-
-#
-# Timestep (in seconds).
-#
-export FOAMKIT_CONTROL_TIMESTEP="1e-4"
-
-#
-# The amount of time to simulate (in seconds). NOTE: if this is more than 10
-# the postproc.sh script will need to be fixed.
-#
-export FOAMKIT_CONTROL_SIM_TIME=5
-
-###############################################################################
 # The lines below should not need to be changed.                              #
 ###############################################################################
 
