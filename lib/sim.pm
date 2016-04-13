@@ -60,7 +60,7 @@ sub monitor_simulation
   }
 
   my $outdir = get_last_sim();
-  run_command("bash $env{FOAMKIT_DIR}/monitor/monitor.sh $outdir", $env{FOAMKIT_DIR});
+  run_command("bash $env{CASE_DIR}/scripts/monitor/Allrun $outdir", $env{CASE_DIR});
   return 1;
 }
 
@@ -77,7 +77,7 @@ sub end_simulation
     return 0;
   }
 
-  run_command("bash $env{FOAMKIT_DIR}/sim/end.sh", $env{FOAMKIT_DIR});
+  run_command("bash $env{CASE_DIR}/scripts/sim/Allend", $env{CASE_DIR});
   return 1;
 }
 
@@ -104,11 +104,6 @@ sub do_simulation
     print STDERR "There is already something running! If you've killed the process manually, remove the simulation_running line in foamkit.dat and try again.\n";
     return 0;
   }
-
-  # Everything should be setup
-  print "Scripts not setup!\n" and return 0 unless is_dir_setup("scripts");
-  print "Mesh not setup!\n" and return 0 unless is_dir_setup("mesh");
-  print "Case not setup!\n" and return 0 unless is_dir_setup("case");
 
   # Save state
   add_setup_data(("simulation_running" => 1, "last_simulation" => "$outdir"));
@@ -137,8 +132,8 @@ sub do_simulation
   log_text($logfile, "Output directory: $outdir\n");
   log_text($logfile, "\n");
 
-  # Do simulation: there should be a run.sh script in the sim directory
-  run_command("bash $env{FOAMKIT_DIR}/sim/run.sh $outdir $continue", $env{FOAMKIT_DIR}, $logfile);
+  # Do simulation: there should be an Allrun script in the sim directory
+  run_command("bash $env{CASE_DIR}/scripts/sim/Allrun $outdir $continue", $env{CASE_DIR}, $logfile);
 
   my $endtime = time;
   my $duration = $endtime - $starttime;

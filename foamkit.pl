@@ -113,7 +113,7 @@ Kit setup and cleanup:
   $menu_text .= q'
 Pre-processing:
 
-10. Convert mesh from ANSYS
+10. Pre-process
 19. Cleanup pre-processing
 
 Simulation:

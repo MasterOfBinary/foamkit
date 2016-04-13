@@ -25,12 +25,6 @@ sub create_mesh
 {
   my %env = get_foamkit_env();
   
-  # Everything should be setup
-  print "Scripts not setup!\n" and return 0 unless is_dir_setup("scripts");
-  print "Initial fields not setup!\n" and return 0 unless is_dir_setup("initial");
-  print "Mesh not setup!\n" and return 0 unless is_dir_setup("mesh");
-  print "Case not setup!\n" and return 0 unless is_dir_setup("case");
-  
   # Get the output directory name
   my $outdir = "$env{SIM_DIR}/preproc_" . get_timestamp();
 
@@ -49,8 +43,8 @@ sub create_mesh
   log_text($logfile, "Output directory: $outdir\n");
   log_text($logfile, "\n");
 
-  # Do simulation: there should be a run.sh script in the preproc directory
-  run_command("bash $env{FOAMKIT_DIR}/preproc/preproc.sh $outdir", $env{FOAMKIT_DIR}, $logfile);
+  # Do simulation: there should be an Allrun script in the preproc directory
+  run_command("bash $env{CASE_DIR}/scripts/preproc/Allrun $outdir", $env{CASE_DIR}, $logfile);
 
   my $endtime = time;
   my $duration = $endtime - $starttime;
