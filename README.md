@@ -1,5 +1,7 @@
 # FOAMkit
 
+*NOTE: this project has been archived because I don't have time to work on it.*
+
 Project management for OpenFOAM.
 
 1. Update `foamkitenv.sh` to fit your setup. It should be fairly well-commented.
